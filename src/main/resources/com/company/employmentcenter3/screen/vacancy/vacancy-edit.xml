@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://vacancyEdit.caption"
+        focusComponent="form">
+    <data>
+        <instance id="vacancyDc"
+                  class="com.company.employmentcenter3.entity.Vacancy">
+            <fetchPlan extends="_base"/>
+            <loader/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose" caption="msg:///actions.Ok"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="editActions">
+        <form id="form" dataContainer="vacancyDc">
+            <column width="350px">
+                <textField id="postField" property="post"/>
+                <textField id="salaryField" property="salary"/>
+                <textField id="betField" property="bet"/>
+                <timeField id="dateOfVacancyRegistrationField" property="dateOfVacancyRegistration"/>
+                <textField id="nameOfEmployerField" property="nameOfEmployer"/>
+                <textField id="professionsField" property="professions"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

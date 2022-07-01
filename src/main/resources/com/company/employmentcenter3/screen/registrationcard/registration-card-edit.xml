@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://registrationCardEdit.caption"
+        focusComponent="form">
+    <data>
+        <instance id="registrationCardDc"
+                  class="com.company.employmentcenter3.entity.RegistrationCard">
+            <fetchPlan extends="_base">
+                <property name="employmentCenter" fetchPlan="_base">
+                    <property name="vacancies" fetchPlan="_base"/>
+                </property>
+                <property name="citizen" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose" caption="msg:///actions.Ok"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="editActions">
+        <form id="form" dataContainer="registrationCardDc">
+            <column width="350px">
+                <entityPicker id="employmentCenterField" property="employmentCenter">
+                    <actions>
+                        <action id="entityLookup" type="entity_lookup"/>
+                        <action id="entityClear" type="entity_clear"/>
+                    </actions>
+                </entityPicker>
+                <dateField id="dateOfRegistrationField" property="dateOfRegistration"/>
+                <textField id="amountOfBenefitPaidField" property="amountOfBenefitPaid"/>
+                <checkBox id="indicationOfBenefitPaymentField" property="indicationOfBenefitPayment"/>
+                <dateField id="dateOfEmploymentField" property="dateOfEmployment"/>
+                <entityPicker id="citizenField" property="citizen">
+                    <actions>
+                        <action id="entityLookup" type="entity_lookup"/>
+                        <action id="entityClear" type="entity_clear"/>
+                    </actions>
+                </entityPicker>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

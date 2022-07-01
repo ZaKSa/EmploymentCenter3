@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://employmentCenterEdit.caption"
+        focusComponent="form">
+    <data>
+        <instance id="employmentCenterDc"
+                  class="com.company.employmentcenter3.entity.EmploymentCenter">
+            <fetchPlan extends="_base">
+                <property name="vacancies" fetchPlan="_base"/>
+                <property name="citizens" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader/>
+            <collection id="vacanciesDc" property="vacancies"/>
+            <collection id="citizensDc" property="citizens"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose" caption="msg:///actions.Ok"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="editActions">
+        <form id="form" dataContainer="employmentCenterDc">
+            <column width="350px">
+            </column>
+        </form>
+        <groupBox id="vacanciesBox" caption="msg://com.company.employmentcenter3.entity/EmploymentCenter.vacancies">
+            <table id="vacanciesTable" dataContainer="vacanciesDc" width="100%" height="200px">
+                <actions>
+                    <action id="add" type="add"/>
+                    <action id="exclude" type="exclude"/>
+                </actions>
+                <columns>
+                    <column id="post"/>
+                    <column id="salary"/>
+                    <column id="bet"/>
+                    <column id="dateOfVacancyRegistration"/>
+                    <column id="nameOfEmployer"/>
+                    <column id="professions"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="vacanciesTable.add"/>
+                    <button action="vacanciesTable.exclude"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <groupBox id="citizensBox" caption="msg://com.company.employmentcenter3.entity/EmploymentCenter.citizens">
+            <table id="citizensTable" dataContainer="citizensDc" width="100%" height="200px">
+                <actions>
+                    <action id="add" type="add"/>
+                    <action id="exclude" type="exclude"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                    <column id="surname"/>
+                    <column id="patronymic"/>
+                    <column id="profession"/>
+                    <column id="signOfDeviceForWork"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="citizensTable.add"/>
+                    <button action="citizensTable.exclude"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>
