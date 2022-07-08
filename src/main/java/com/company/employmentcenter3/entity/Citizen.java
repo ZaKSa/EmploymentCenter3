@@ -13,13 +13,19 @@ import java.util.List;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "CITIZEN")
+@Table(name = "CITIZEN", indexes = {
+        @Index(name = "IDX_CITIZEN_VACANCY_ID", columnList = "VACANCY_ID")
+})
 @Entity
 public class Citizen {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
     private UUID id;
+
+    @JoinColumn(name = "VACANCY_ID")
+    @OneToOne(fetch = FetchType.LAZY)
+    private Vacancy vacancy;
 
     @InstanceName
     @Column(name = "NAME", nullable = false)
@@ -59,6 +65,14 @@ public class Citizen {
     @Column(name = "DELETED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedDate;
+
+    public Vacancy getVacancy() {
+        return vacancy;
+    }
+
+    public void setVacancy(Vacancy vacancy) {
+        this.vacancy = vacancy;
+    }
 
     public List<EmploymentCenter> getEmploymentCenters() {
         return employmentCenters;

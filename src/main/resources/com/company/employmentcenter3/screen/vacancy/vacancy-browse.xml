@@ -4,6 +4,12 @@
         caption="msg://vacancyBrowse.caption"
         focusComponent="vacanciesTable">
     <data readOnly="true">
+        <instance id="selectedCitizenDc"
+                  class="com.company.employmentcenter3.entity.EmploymentCenter">
+            <fetchPlan extends="_base">
+                <property name="citizens" fetchPlan="_instance_name"/>
+            </fetchPlan>
+        </instance>
         <collection id="vacanciesDc"
                     class="com.company.employmentcenter3.entity.Vacancy">
             <fetchPlan extends="_base"/>
@@ -35,6 +41,17 @@
                 dataLoader="vacanciesDl">
             <properties include=".*"/>
         </filter>
+        <!--0807-->
+        <entityPicker id="selectedCitizenField"
+                      dataContainer="selectedCitizenDc"
+                      property="citizens"
+                      caption="msg://com.company.employmentcenter3.screen.vacancy/vacancyBrowse.selectedCitizen">
+            <actions>
+                <action id="lookup" type="entity_lookup"/>
+                <action id="clear" type="entity_clear"/>
+            </actions>
+        </entityPicker>
+        <!--0807-->
         <groupTable id="vacanciesTable"
                     width="100%"
                     dataContainer="vacanciesDc">

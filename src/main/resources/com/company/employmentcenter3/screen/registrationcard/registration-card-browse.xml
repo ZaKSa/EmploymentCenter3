@@ -66,7 +66,7 @@
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">
             <button action="lookupSelectAction"/>
-            <button action="lookupCancelAction"/>
+            <button action="lookupCancelAction" />
         </hbox>
     </layout>
 </window>

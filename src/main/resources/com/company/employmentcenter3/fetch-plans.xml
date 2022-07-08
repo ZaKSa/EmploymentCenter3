@@ -1,0 +1,9 @@
+<fetchPlans xmlns="http://jmix.io/schema/core/fetch-plans">
+    <fetchPlan entity="Vacancy" name="vacancy-fetch-plan" extends="_base"/>
+    <fetchPlan entity="RegistrationCard" name="registrationCard-fetch-plan" extends="_base">
+        <property name="employmentCenter" fetchPlan="_base">
+            <property name="vacancies" fetchPlan="_base"/>
+        </property>
+        <property name="citizen" fetchPlan="_base"/>
+    </fetchPlan>
+</fetchPlans>

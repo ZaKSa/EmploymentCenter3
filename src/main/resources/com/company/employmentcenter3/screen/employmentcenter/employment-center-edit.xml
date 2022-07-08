@@ -44,7 +44,6 @@
                     <column id="post"/>
                     <column id="salary"/>
                     <column id="bet"/>
-                    <column id="dateOfVacancyRegistration"/>
                     <column id="nameOfEmployer"/>
                     <column id="professions"/>
                 </columns>

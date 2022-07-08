@@ -3,6 +3,7 @@ package com.company.employmentcenter3.entity;
 import io.jmix.core.annotation.DeletedBy;
 import io.jmix.core.annotation.DeletedDate;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 
 import javax.persistence.*;
@@ -15,7 +16,8 @@ import java.util.UUID;
 @JmixEntity
 @Table(name = "REGISTRATION_CARD", indexes = {
         @Index(name = "IDX_REGISTRATIONCARD", columnList = "CITIZEN_ID"),
-        @Index(name = "IDX_REGISTRATIONCARD", columnList = "EMPLOYMENT_CENTER_ID")
+        @Index(name = "IDX_REGISTRATIONCARD", columnList = "EMPLOYMENT_CENTER_ID"),
+        @Index(name = "IDX_REGISTRATIONCARD", columnList = "VACANCIES_ID")
 })
 @Entity
 public class RegistrationCard {
@@ -23,6 +25,10 @@ public class RegistrationCard {
     @Column(name = "ID", nullable = false)
     @Id
     private UUID id;
+
+    @JoinColumn(name = "VACANCIES_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Vacancy vacancies;
 
     @JoinColumn(name = "EMPLOYMENT_CENTER_ID")
     @OneToOne(fetch = FetchType.LAZY)
@@ -36,13 +42,13 @@ public class RegistrationCard {
     @Column(name = "AMOUNT_OF_BENEFIT_PAID")
     private Integer amountOfBenefitPaid;
 
-    @Column(name = "INDICATION_OF_BENEFIT_PAYMENT", nullable = false)
-    @NotNull
-    private Boolean indicationOfBenefitPayment = false;
+    @Column(name = "INDICATION_OF_BENEFIT_PAYMENT")
+    private Boolean indicationOfBenefitPayment;
 
     @Column(name = "DATE_OF_EMPLOYMENT")
     private LocalDate dateOfEmployment;
 
+    @InstanceName
     @JoinColumn(name = "CITIZEN_ID")
     @OneToOne(fetch = FetchType.LAZY)
     private Citizen citizen;
@@ -55,6 +61,22 @@ public class RegistrationCard {
     @Column(name = "DELETED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedDate;
+
+    public Boolean getIndicationOfBenefitPayment() {
+        return indicationOfBenefitPayment;
+    }
+
+    public void setIndicationOfBenefitPayment(Boolean indicationOfBenefitPayment) {
+        this.indicationOfBenefitPayment = indicationOfBenefitPayment;
+    }
+
+    public Vacancy getVacancies() {
+        return vacancies;
+    }
+
+    public void setVacancies(Vacancy vacancies) {
+        this.vacancies = vacancies;
+    }
 
     public EmploymentCenter getEmploymentCenter() {
         return employmentCenter;
@@ -78,14 +100,6 @@ public class RegistrationCard {
 
     public void setDateOfEmployment(LocalDate dateOfEmployment) {
         this.dateOfEmployment = dateOfEmployment;
-    }
-
-    public Boolean getIndicationOfBenefitPayment() {
-        return indicationOfBenefitPayment;
-    }
-
-    public void setIndicationOfBenefitPayment(Boolean indicationOfBenefitPayment) {
-        this.indicationOfBenefitPayment = indicationOfBenefitPayment;
     }
 
     public Integer getAmountOfBenefitPaid() {

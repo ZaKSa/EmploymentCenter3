@@ -7,4 +7,8 @@ import com.company.employmentcenter3.entity.Vacancy;
 @UiDescriptor("vacancy-edit.xml")
 @EditedEntityContainer("vacancyDc")
 public class VacancyEdit extends StandardEditor<Vacancy> {
+    @Subscribe
+    public void onInitEntity(InitEntityEvent<Vacancy> event) {
+        
+    }
 }

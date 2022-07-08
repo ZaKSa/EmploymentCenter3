@@ -5,7 +5,9 @@
     <data>
         <instance id="citizenDc"
                   class="com.company.employmentcenter3.entity.Citizen">
-            <fetchPlan extends="_base"/>
+            <fetchPlan extends="_base">
+                <property name="vacancy" fetchPlan="_base"/>
+            </fetchPlan>
             <loader/>
         </instance>
     </data>
@@ -27,6 +29,12 @@
     <layout spacing="true" expand="editActions">
         <form id="form" dataContainer="citizenDc">
             <column width="350px">
+                <entityPicker id="vacancyField" property="vacancy">
+                    <actions>
+                        <action id="entityLookup" type="entity_lookup"/>
+                        <action id="entityClear" type="entity_clear"/>
+                    </actions>
+                </entityPicker>
                 <textField id="nameField" property="name"/>
                 <textField id="surnameField" property="surname"/>
                 <textField id="patronymicField" property="patronymic"/>

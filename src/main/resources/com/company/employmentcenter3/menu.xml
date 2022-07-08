@@ -4,12 +4,15 @@
     <menu id="application" caption="msg://com.company.employmentcenter3/menu.application" insertBefore="administration">
         <item screen="User.browse" caption="msg://com.company.employmentcenter3.screen.user/UserBrowse.caption"/>
         <item screen="themeSettingsScreen" caption="msg://io.jmix.ui.app.themesettings/themeSettings.caption"/>
-        <item screen="Vacancy.browse" caption="msg://com.company.employmentcenter3.screen.vacancy/vacancyBrowse.menu"/>
-        <item screen="RegistrationCard.browse"
-              caption="msg://com.company.employmentcenter3.screen.registrationcard/registrationCardBrowse.menu"/>
         <item screen="EmploymentCenter.browse"
               caption="msg://com.company.employmentcenter3.screen.employmentcenter/employmentCenterBrowse.menu"/>
         <item screen="Citizen.browse" caption="msg://com.company.employmentcenter3.screen.citizen/citizenBrowse.menu"/>
+        <item screen="Vacancy.browse" caption="msg://com.company.employmentcenter3.screen.vacancy/vacancyBrowse.menu"/>
+        <item screen="RegistrationCard.browse"
+              caption="msg://com.company.employmentcenter3.screen.registrationcard/registrationCardBrowse.menu"/>
+        <item screen="SuitableProfessions.browse"
+              caption="msg://com.company.employmentcenter3.screen.suitableprofessions/suitableProfessionsBrowse.menu"/>
+
     </menu>
 
 </menu-config>

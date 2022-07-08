@@ -30,7 +30,7 @@
                 <textField id="postField" property="post"/>
                 <textField id="salaryField" property="salary"/>
                 <textField id="betField" property="bet"/>
-                <timeField id="dateOfVacancyRegistrationField" property="dateOfVacancyRegistration"/>
+                <dateField id="dateOfVacancyRegistrationField" property="dateOfVacancyRegistration"/>
                 <textField id="nameOfEmployerField" property="nameOfEmployer"/>
                 <textField id="professionsField" property="professions"/>
             </column>

@@ -1,13 +1,14 @@
 package com.company.employmentcenter3.entity;
 
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
-import java.time.LocalTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,6 +21,7 @@ public class Vacancy {
     @Id
     private UUID id;
 
+    @InstanceName
     @Column(name = "POST", nullable = false)
     @NotNull
     private String post;
@@ -36,7 +38,7 @@ public class Vacancy {
 
     @Column(name = "DATE_OF_VACANCY_REGISTRATION", nullable = false)
     @NotNull
-    private LocalTime dateOfVacancyRegistration;
+    private LocalDate dateOfVacancyRegistration;
 
     @Column(name = "NAME_OF_EMPLOYER", nullable = false)
     @NotNull
@@ -51,6 +53,25 @@ public class Vacancy {
             inverseJoinColumns = @JoinColumn(name = "EMPLOYMENT_CENTER_ID", referencedColumnName = "ID"))
     @ManyToMany
     private List<EmploymentCenter> employmentCenters;
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "vacancy")
+    private Citizen citizen;
+
+    public Citizen getCitizen() {
+        return citizen;
+    }
+
+    public void setCitizen(Citizen citizen) {
+        this.citizen = citizen;
+    }
+
+    public LocalDate getDateOfVacancyRegistration() {
+        return dateOfVacancyRegistration;
+    }
+
+    public void setDateOfVacancyRegistration(LocalDate dateOfVacancyRegistration) {
+        this.dateOfVacancyRegistration = dateOfVacancyRegistration;
+    }
 
     public List<EmploymentCenter> getEmploymentCenters() {
         return employmentCenters;
@@ -74,14 +95,6 @@ public class Vacancy {
 
     public void setNameOfEmployer(String nameOfEmployer) {
         this.nameOfEmployer = nameOfEmployer;
-    }
-
-    public LocalTime getDateOfVacancyRegistration() {
-        return dateOfVacancyRegistration;
-    }
-
-    public void setDateOfVacancyRegistration(LocalTime dateOfVacancyRegistration) {
-        this.dateOfVacancyRegistration = dateOfVacancyRegistration;
     }
 
     public Double getBet() {
