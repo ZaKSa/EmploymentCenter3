@@ -57,6 +57,17 @@ public class Vacancy {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "vacancy")
     private Citizen citizen;
 
+    @Column(name = "IS_SELECTED")
+    private Boolean isSelected;
+
+    public Boolean getIsSelected() {
+        return isSelected;
+    }
+
+    public void setIsSelected(Boolean isSelected) {
+        this.isSelected = isSelected;
+    }
+
     public Citizen getCitizen() {
         return citizen;
     }

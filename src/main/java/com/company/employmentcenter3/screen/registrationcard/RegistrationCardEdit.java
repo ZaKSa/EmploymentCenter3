@@ -1,17 +1,16 @@
 package com.company.employmentcenter3.screen.registrationcard;
 
-import com.company.employmentcenter3.app.RegistrationCardService;
+import com.company.employmentcenter3.app.CitizenService;
 import com.company.employmentcenter3.app.VacancyService;
 import com.company.employmentcenter3.entity.Citizen;
 import com.company.employmentcenter3.entity.Vacancy;
-import com.company.employmentcenter3.screen.suitableprofessions.SuitableProfessionsBrowse;
-import com.company.employmentcenter3.screen.vacancy.VacancyScreen;
 import io.jmix.core.DataManager;
+import io.jmix.ui.Notifications;
 import io.jmix.ui.ScreenBuilders;
 import io.jmix.ui.Screens;
-import io.jmix.ui.action.Action;
 import io.jmix.ui.action.entitypicker.EntityLookupAction;
 import io.jmix.ui.component.*;
+import io.jmix.ui.model.CollectionLoader;
 import io.jmix.ui.model.InstanceContainer;
 import io.jmix.ui.screen.*;
 import com.company.employmentcenter3.entity.RegistrationCard;
@@ -20,8 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.List;
+import java.util.UUID;
 
 @UiController("RegistrationCard.edit")
 @UiDescriptor("registration-card-edit.xml")
@@ -51,6 +49,8 @@ public class RegistrationCardEdit extends StandardEditor<RegistrationCard> {
     private DateField dateOfRegistrationField;
     @Autowired
     private TextField amountOfBenefitPaidField;
+    @Autowired
+    private DateField dateOfEmploymentField;
 
     @Inject
     protected EditorScreenFacet editorScreen;
@@ -77,6 +77,12 @@ public class RegistrationCardEdit extends StandardEditor<RegistrationCard> {
 
     @Subscribe("editBtn")
     protected void onEditButtonClick(Button.ClickEvent event) {
+        Citizen citizen = citizenField.getValue();
+        UUID citizenId = citizen.getId();
+
+       /*UUID vacancyId = dataManager.loadValue("SELECT c.vacancyId FROM Citizen c where c.id= :citizenId", UUID.class)
+                    .parameter("citizenId", citizenId)
+                    .one();*/
         //editSelectedEntity(citizenField.getValue());
         //RegistrationCard registrationCard = registrationCardDc.getItem();
         //Citizen citizen = citizenField.getValue();
@@ -85,6 +91,43 @@ public class RegistrationCardEdit extends StandardEditor<RegistrationCard> {
         //nameField.setValue(registrationCard.getCitizen().getName());
         //surnameField.setValue(registrationCard.getCitizen().getSurname());
 
+    }
+    @Named("vacanciesDl")
+    private CollectionLoader<Vacancy> vacanciesDl;
+
+    private Vacancy selectedVacancy;
+    private Citizen selectedCitizen;
+
+    @Autowired
+    CitizenService citizenService;
+
+    @Autowired
+    private Notifications notifications;
+
+    @Subscribe("commitAndCloseBtn")
+    public void onCommitAndCloseBtnClick(Button.ClickEvent event) {
+            selectedCitizen = citizenField.getValue();
+            UUID regId = dataManager.loadValue("select reg.citizen.id from RegistrationCard reg where reg.citizen.id = :citizenId", UUID.class)
+                .parameter("citizenId", selectedCitizen.getId())
+                .one();
+
+            if (regId == null) {
+                selectedVacancy = selectedCitizen.getVacancy();
+                citizenService.haveBenefitPayment(selectedVacancy.getId(), selectedCitizen.getId());
+                vacanciesDl.load();
+                Citizen citizen = citizenField.getValue();
+                if (selectedCitizen.getVacancy() != null) {
+                    dateOfEmploymentField.setValue(LocalDate.now());
+                }
+            }
+            else {
+                
+                //throw new ExceedingFundsLimitException();
+                notifications.create()
+                        .withCaption("ОШИБКА")
+                        .withDescription("Карточка с таким пользователем уже существует")
+                        .show();
+            }
     }
 
     /*@Subscribe("customerEntityPicker.points")

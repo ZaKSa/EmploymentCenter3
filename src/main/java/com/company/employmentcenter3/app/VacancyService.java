@@ -1,15 +1,12 @@
 package com.company.employmentcenter3.app;
 
 import com.company.employmentcenter3.entity.Citizen;
-import com.company.employmentcenter3.entity.SuitableProfessions;
 import com.company.employmentcenter3.entity.Vacancy;
 import io.jmix.core.DataManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service

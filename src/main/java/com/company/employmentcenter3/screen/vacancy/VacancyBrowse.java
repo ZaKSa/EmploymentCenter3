@@ -20,6 +20,11 @@ public class VacancyBrowse extends StandardLookup<Vacancy> {
     @Autowired
     private VacancyService vacancyService;
 
+    @Subscribe
+    public void onBeforeShow(BeforeShowEvent event) {
+        
+    }
+
     private Citizen selectedCitizen = null;
 
     @Named("vacanciesDl")

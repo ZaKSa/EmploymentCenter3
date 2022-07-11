@@ -10,8 +10,6 @@
         <item screen="Vacancy.browse" caption="msg://com.company.employmentcenter3.screen.vacancy/vacancyBrowse.menu"/>
         <item screen="RegistrationCard.browse"
               caption="msg://com.company.employmentcenter3.screen.registrationcard/registrationCardBrowse.menu"/>
-        <item screen="SuitableProfessions.browse"
-              caption="msg://com.company.employmentcenter3.screen.suitableprofessions/suitableProfessionsBrowse.menu"/>
 
     </menu>
 

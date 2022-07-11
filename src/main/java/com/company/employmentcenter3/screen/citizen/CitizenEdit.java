@@ -24,24 +24,21 @@ import java.util.List;
 public class CitizenEdit extends StandardEditor<Citizen> {
     private Vacancy selectedVacancy;
     private Citizen selectedCitizen;
-    @Autowired
-    CitizenService citizenService;
+
 
     @Autowired
     private CheckBox signOfDeviceForWorkField;
 
-
-
-    @Named("vacanciesDl")
+        @Named("vacanciesDl")
     private CollectionLoader<Vacancy> vacanciesDl;
 
     @Subscribe("vacancyField")
     public void onSelectedVacancyFieldValueChange(HasValue.ValueChangeEvent<Vacancy> event) {
         signOfDeviceForWorkField.setValue(Boolean.TRUE);
 
-        selectedVacancy = event.getValue();
-        selectedCitizen = getEditedEntity();
-        citizenService.haveBenefitPayment(selectedVacancy.getId(), selectedCitizen.getId());
+        //selectedVacancy = event.getValue();
+        //selectedCitizen = getEditedEntity();
+        //citizenService.haveBenefitPayment(selectedVacancy.getId(), selectedCitizen.getId());
     vacanciesDl.load();
     }
 
@@ -54,14 +51,10 @@ public class CitizenEdit extends StandardEditor<Citizen> {
     @Autowired
     private TextField professionField;
 
-    @Subscribe
-    public void onBeforeShow(BeforeShowEvent event) {
-        getScreenData().loadAll();
-    }
-
-
-
-
+    //@Subscribe
+    //public void onBeforeShow(BeforeShowEvent event) {
+    //    getScreenData().loadAll();
+    //}
 
 
 }

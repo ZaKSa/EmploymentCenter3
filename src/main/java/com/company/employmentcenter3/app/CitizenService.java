@@ -46,6 +46,7 @@ public class CitizenService {
         LocalDate date = LocalDate.now();
         registrationCard.setDateOfEmployment(date);
 
+        vacancy.setIsSelected(Boolean.TRUE);
         citizen.setSignOfDeviceForWork(Boolean.TRUE);
         //signOfDeviceForWorkField.setValue(Boolean.TRUE);
         //ставка×оклад<МРОТ

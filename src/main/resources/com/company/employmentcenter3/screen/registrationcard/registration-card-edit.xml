@@ -15,6 +15,15 @@
         </instance>
 
         <!---->
+        <collection id="vacanciesDc"
+                    class="com.company.employmentcenter3.entity.Vacancy">
+            <fetchPlan extends="_base"/>
+            <loader id="vacanciesDl">
+                <query>
+                    <!--  <![CDATA[select e from Vacancy e ]]>  -->
+                </query>
+            </loader>
+        </collection>
         <!---->
 
     </data>

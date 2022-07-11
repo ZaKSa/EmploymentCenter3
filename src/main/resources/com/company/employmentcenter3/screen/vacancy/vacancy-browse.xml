@@ -15,7 +15,7 @@
             <fetchPlan extends="_base"/>
             <loader id="vacanciesDl">
                 <query>
-                    <![CDATA[select e from Vacancy e]]>
+                    <![CDATA[select e from Vacancy e where e.isSelected=false]]>
                 </query>
             </loader>
         </collection>
@@ -67,6 +67,7 @@
                 <column id="dateOfVacancyRegistration"/>
                 <column id="nameOfEmployer"/>
                 <column id="professions"/>
+                <column id="isSelected" visible="false"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
