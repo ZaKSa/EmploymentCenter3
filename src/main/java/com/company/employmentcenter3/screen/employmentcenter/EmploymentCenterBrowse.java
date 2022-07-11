@@ -10,16 +10,4 @@ import org.springframework.beans.factory.annotation.Autowired;
 @LookupComponent("employmentCentersTable")
 public class EmploymentCenterBrowse extends StandardLookup<EmploymentCenter> {
 
-    @Autowired
-    private ScreenTools screenTools;
-
-    /*@Subscribe
-    public void onAfterShow(AfterShowEvent event) {
-        screenTools.openDefaultScreen(
-                UiControllerUtils.getScreenContext(this).getScreens());
-
-        screenTools.handleRedirect();
-    }*/
-
-
 }

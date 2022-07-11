@@ -13,10 +13,27 @@
             </fetchPlan>
             <loader/>
         </instance>
+
+        <!---->
+        <!---->
+
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
         <screenSettings id="settingsFacet" auto="true"/>
+
+        <!---->
+
+        <editorScreen id="editorScreen"
+                      openMode="NEW_TAB"
+                      editMode="EDIT"
+                      entityClass="com.company.employmentcenter3.entity.Citizen"
+                      screenClass="com.company.employmentcenter3.screen.citizen.CitizenEdit"
+                      onButton="editBtn"
+                        field="citizenField"
+        />
+
+        <!---->
     </facets>
     <actions>
         <action id="windowCommitAndClose" caption="msg:///actions.Ok"
@@ -26,11 +43,8 @@
         <action id="windowClose"
                 caption="msg:///actions.Close"
                 icon="EDITOR_CANCEL"/>
+        <action id="windowEdit"/>
 
-        <action id="windowShowVacancies"
-                caption="Save"/>
-                <!--icon="EDITOR_OK"-->
-                <!--shortcut="${COMMIT_SHORTCUT}"/>-->
     </actions>
     <dialogMode height="600"
                 width="800"/>
@@ -47,19 +61,23 @@
                 <textField id="amountOfBenefitPaidField" property="amountOfBenefitPaid"/>
                 <checkBox id="indicationOfBenefitPaymentField" property="indicationOfBenefitPayment"/>
                 <dateField id="dateOfEmploymentField" property="dateOfEmployment"/>
-                <entityPicker id="citizenField" property="citizen">
+                <entityPicker id="citizenField" property="citizen" editable="true" dataContainer="registrationCardDc">
                     <actions>
                         <action id="entityLookup" type="entity_lookup"/>
                         <action id="entityClear" type="entity_clear"/>
+
                     </actions>
                 </entityPicker>
             </column>
         </form>
+
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
             <button id="closeBtn" action="windowClose"/>
+            <button id="editBtn" action="windowEdit" caption="msg://editBtn.caption"/>
 
-            <button id="showVacanciesBtn" action="windowShowVacancies"/>
+
         </hbox>
+
     </layout>
 </window>

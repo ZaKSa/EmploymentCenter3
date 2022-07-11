@@ -10,6 +10,17 @@
             </fetchPlan>
             <loader/>
         </instance>
+        <!--0807-->
+        <collection id="vacanciesDc"
+                    class="com.company.employmentcenter3.entity.Vacancy">
+            <fetchPlan extends="_base"/>
+            <loader id="vacanciesDl">
+                <query>
+                 <!--  <![CDATA[select e from Vacancy e ]]>  -->
+                </query>
+            </loader>
+        </collection>
+        <!--0807-->
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>

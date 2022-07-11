@@ -31,11 +31,12 @@
     <dialogMode height="600"
                 width="800"/>
     <layout expand="citizensTable" spacing="true">
+
         <filter id="filter"
                 dataLoader="citizensDl">
             <properties include=".*"/>
         </filter>
-        <groupTable id="citizensTable"
+        <groupTable id="citizensTable"  multiselect="true"
                     width="100%"
                     dataContainer="citizensDc">
             <actions>
@@ -44,6 +45,7 @@
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
+
                 <column id="name"/>
                 <column id="surname"/>
                 <column id="patronymic"/>

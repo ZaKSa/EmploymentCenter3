@@ -9,15 +9,18 @@ import com.company.employmentcenter3.screen.vacancy.VacancyScreen;
 import io.jmix.core.DataManager;
 import io.jmix.ui.ScreenBuilders;
 import io.jmix.ui.Screens;
+import io.jmix.ui.action.Action;
 import io.jmix.ui.action.entitypicker.EntityLookupAction;
-import io.jmix.ui.component.Button;
-import io.jmix.ui.component.EntityPicker;
-import io.jmix.ui.component.Form;
+import io.jmix.ui.component.*;
+import io.jmix.ui.model.InstanceContainer;
 import io.jmix.ui.screen.*;
 import com.company.employmentcenter3.entity.RegistrationCard;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.inject.Inject;
 import javax.inject.Named;
+import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 
 @UiController("RegistrationCard.edit")
@@ -29,12 +32,13 @@ public class RegistrationCardEdit extends StandardEditor<RegistrationCard> {
     @Autowired
     private VacancyService vacancyService;
 
-
+    private Integer amountOfBenefitPaid = 12790;
     @Autowired
     private EntityPicker<Citizen> citizenField;
 
     @Autowired
     private DataManager dataManager;
+
     @Named("citizenField.entityLookup")
     private EntityLookupAction<Citizen> citizenFieldEntityLookup;
 
@@ -43,61 +47,59 @@ public class RegistrationCardEdit extends StandardEditor<RegistrationCard> {
     @Autowired
     private ScreenBuilders screenBuilders;
 
-    /*private void showFancyScreen(String message) {
-        FancyMessageScreen fancyScreen = screens.create(FancyMessageScreen.class);
-        fancyScreen.setFancyMessage(message);
-        screens.show(fancyScreen);
-    }
+    @Autowired
+    private DateField dateOfRegistrationField;
+    @Autowired
+    private TextField amountOfBenefitPaidField;
 
-    private void openOtherScreen() {
-        screenBuilders.screen(this)
-                .withScreenClass(RegistrationCardEdit.class)
-                .withAfterCloseListener(e -> {
-                    if (e.closedWith(StandardOutcome.COMMIT)) {
-                        getScreenData().loadAll();
-                    }
-                })
+    @Inject
+    protected EditorScreenFacet editorScreen;
+
+    @Autowired
+    protected InstanceContainer<RegistrationCard> registrationCardDc;
+
+    private void editSelectedEntity(Citizen entity) {
+        screenBuilders.editor(Citizen.class, this)
+                .editEntity(entity)
                 .build()
                 .show();
+    }
+    /*@Subscribe
+    public void onInitEntity(InitEntityEvent<Vacancy> event) {
+        dateOfVacancyRegistrationField.setValue(LocalDate.now());
     }*/
-/*
-screenBuilders.editor(Talk.class, this)
-                .editEntity((Talk) event.getEntity())
-                .withOpenMode(OpenMode.DIALOG)
-                .withScreenClass(TalkEdit.class)
-                .withAfterCloseListener(afterCloseEvent -> {
-                    if (afterCloseEvent.closedWith(StandardOutcome.COMMIT)) {
-                        getScreenData().loadAll();
-                    }
-                }).show();
- */
-    @Subscribe("showVacanciesBtn")
-    protected void onShowButtonClick(Button.ClickEvent event) {
 
-        Citizen citizen = citizenField.getValue();
-        //List<Vacancy> showVacancies = vacancyService.findVacancies(citizen.getId());
-
-        //SuitableProfessionsBrowse fancyScreen = screens.create(SuitableProfessionsBrowse.class);
-        //fancyScreen.setVacancy(showVacancies);
-        //screens.show(fancyScreen);
-
-        /*screenBuilders.screen(this)
-                .withScreenClass(RegistrationCardEdit.class)
-                .withAfterCloseListener(e -> {
-                    if (e.closedWith(StandardOutcome.COMMIT)) {
-                        getScreenData().loadAll();
-                    }
-                })
-                .build()
-                .show();
-*/
+    @Subscribe
+    public void onBeforeShow(BeforeShowEvent event) {
+        dateOfRegistrationField.setValue(LocalDate.now());
+        amountOfBenefitPaidField.setValue(amountOfBenefitPaid);
     }
 
-    /*@Subscribe("someAction")
-    protected void onSomeActionActionPerformed(Action.ActionPerformedEvent event) {
-        notifications.create()
-                .withCaption("Action performed")
-                .show();
-    }*/
+    @Subscribe("editBtn")
+    protected void onEditButtonClick(Button.ClickEvent event) {
+        //editSelectedEntity(citizenField.getValue());
+        //RegistrationCard registrationCard = registrationCardDc.getItem();
+        //Citizen citizen = citizenField.getValue();
 
+//        editorScreen.show();
+        //nameField.setValue(registrationCard.getCitizen().getName());
+        //surnameField.setValue(registrationCard.getCitizen().getSurname());
+
+    }
+
+    /*@Subscribe("customerEntityPicker.points")
+    public void onCustomerEntityPickerPoints(Action.ActionPerformedEvent event) {
+        Customer customer = customerEntityPicker.getValue();
+        if (customer != null) {
+            notifications.create()
+                    .withCaption(customer.getFirstName() +
+                            " has " + customer.getRewardPoints() +
+                            " reward points")
+                    .show();
+        } else {
+            notifications.create()
+                    .withCaption("Choose a customer")
+                    .show();
+        }
+    }*/
 }

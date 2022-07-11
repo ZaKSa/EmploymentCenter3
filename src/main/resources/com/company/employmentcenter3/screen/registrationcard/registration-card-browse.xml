@@ -49,12 +49,12 @@
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="employmentCenter"/>
-                <column id="dateOfRegistration"/>
-                <column id="amountOfBenefitPaid"/>
-                <column id="indicationOfBenefitPayment"/>
-                <column id="dateOfEmployment"/>
                 <column id="citizen"/>
+                <column id="indicationOfBenefitPayment"/>
+                <column id="amountOfBenefitPaid"/>
+                <column id="dateOfEmployment"/>
+                <column id="dateOfRegistration"/>
+                <column id="employmentCenter"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

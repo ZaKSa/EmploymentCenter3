@@ -27,45 +27,4 @@ public class EmploymentCenterService {
         return dataManager.load(Citizen.class).all().list();
     }
 
-
-
-
-    /*public boolean haveBenefitPayment(Id<Citizen> userId) {
-        Citizen citizen = dataManager.load(userId).one();
-
-        //ставка×оклад<МРОТ
-        Integer salary = dataManager.loadValue("select sum(te.timeSpent) from TimeEntry te where te.task.project.id = :projectId", Integer.class)
-                .parameter("projectId", projectId)
-                .one();
-        Double bet = dataManager.loadValue("select sum(te.timeSpent) from TimeEntry te where te.task.project.id = :projectId", Integer.class)
-                .parameter("projectId", projectId)
-                .one();
-        return ;
-    }*/
-
-
-    /*public List<EmploymentCenter> fetchVacancies() {
-        List<Vacancy> projects = dataManager.load(Vacancy.class).all().fetchPlan("vacancy-fetch-plan").list();
-        List<EmploymentCenter> projectStats = projects.stream().map(project -> {
-
-            List<Vacancy> vacancyList = new ArrayList<>();
-            for (Vacancy vacancy: projects) {
-                Vacancy vacancy_ = dataManager.create(Vacancy.class);
-                vacancy_.setId(vacancy.getId());
-                vacancy_.setPost(vacancy.getPost());
-                vacancy_.setSalary(vacancy.getSalary());
-                vacancy_.setBet(vacancy.getBet());
-                vacancy_.setDateOfVacancyRegistration(vacancy.getDateOfVacancyRegistration());
-                vacancy_.setNameOfEmployer(vacancy.getNameOfEmployer());
-                vacancy_.setProfessions(vacancy.getProfessions());
-                vacancy_.setEmploymentCenters(vacancy.getEmploymentCenters());
-            }
-
-            EmploymentCenter stat = dataManager.create(EmploymentCenter.class);
-            stat.setVacancies(vacancyList);
-            return stat;
-        }).collect(Collectors.toList());
-        return projectStats;
-    }*/
-
 }
