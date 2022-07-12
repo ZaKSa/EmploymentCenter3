@@ -19,7 +19,7 @@ import java.util.UUID;
 
 @JmixEntity
 @Table(name = "REGISTRATION_CARD", indexes = {
-        @Index(name = "IDX_REGISTRATIONCARD", columnList = "CITIZEN_ID"),
+        @Index(name = "IDX_REGISTRATIONCARD", columnList = "CITIZEN_ID", unique = true),
         @Index(name = "IDX_REGISTRATIONCARD", columnList = "EMPLOYMENT_CENTER_ID"),
         @Index(name = "IDX_REGISTRATIONCARD", columnList = "VACANCIES_ID")
 })
@@ -53,7 +53,7 @@ public class RegistrationCard {
     private LocalDate dateOfEmployment;
 
     @InstanceName
-    @JoinColumn(name = "CITIZEN_ID")
+    @JoinColumn(name = "CITIZEN_ID", unique = true)
     @OneToOne(fetch = FetchType.LAZY)
     private Citizen citizen;
 

@@ -5,6 +5,7 @@ import com.company.employmentcenter3.app.VacancyService;
 import com.company.employmentcenter3.entity.Citizen;
 import com.company.employmentcenter3.entity.Vacancy;
 import io.jmix.core.DataManager;
+import io.jmix.ui.Dialogs;
 import io.jmix.ui.Notifications;
 import io.jmix.ui.ScreenBuilders;
 import io.jmix.ui.Screens;
@@ -25,11 +26,6 @@ import java.util.UUID;
 @UiDescriptor("registration-card-edit.xml")
 @EditedEntityContainer("registrationCardDc")
 public class RegistrationCardEdit extends StandardEditor<RegistrationCard> {
-    @Autowired
-    private Form form;
-    @Autowired
-    private VacancyService vacancyService;
-
     private Integer amountOfBenefitPaid = 12790;
     @Autowired
     private EntityPicker<Citizen> citizenField;
@@ -37,11 +33,6 @@ public class RegistrationCardEdit extends StandardEditor<RegistrationCard> {
     @Autowired
     private DataManager dataManager;
 
-    @Named("citizenField.entityLookup")
-    private EntityLookupAction<Citizen> citizenFieldEntityLookup;
-
-    @Autowired
-    private Screens screens;
     @Autowired
     private ScreenBuilders screenBuilders;
 
@@ -51,7 +42,23 @@ public class RegistrationCardEdit extends StandardEditor<RegistrationCard> {
     private TextField amountOfBenefitPaidField;
     @Autowired
     private DateField dateOfEmploymentField;
+    @Named("vacanciesDl")
+    private CollectionLoader<Vacancy> vacanciesDl;
 
+    private Vacancy selectedVacancy;
+    private Citizen selectedCitizen;
+
+    @Autowired
+    CitizenService citizenService;
+
+    @Autowired
+    private Notifications notifications;
+
+    @Autowired
+    private Dialogs dialogs;
+
+    @Autowired
+    private MessageBundle messageBundle;
     @Inject
     protected EditorScreenFacet editorScreen;
 
@@ -64,10 +71,6 @@ public class RegistrationCardEdit extends StandardEditor<RegistrationCard> {
                 .build()
                 .show();
     }
-    /*@Subscribe
-    public void onInitEntity(InitEntityEvent<Vacancy> event) {
-        dateOfVacancyRegistrationField.setValue(LocalDate.now());
-    }*/
 
     @Subscribe
     public void onBeforeShow(BeforeShowEvent event) {
@@ -79,30 +82,8 @@ public class RegistrationCardEdit extends StandardEditor<RegistrationCard> {
     protected void onEditButtonClick(Button.ClickEvent event) {
         Citizen citizen = citizenField.getValue();
         UUID citizenId = citizen.getId();
-
-       /*UUID vacancyId = dataManager.loadValue("SELECT c.vacancyId FROM Citizen c where c.id= :citizenId", UUID.class)
-                    .parameter("citizenId", citizenId)
-                    .one();*/
-        //editSelectedEntity(citizenField.getValue());
-        //RegistrationCard registrationCard = registrationCardDc.getItem();
-        //Citizen citizen = citizenField.getValue();
-
-//        editorScreen.show();
-        //nameField.setValue(registrationCard.getCitizen().getName());
-        //surnameField.setValue(registrationCard.getCitizen().getSurname());
-
     }
-    @Named("vacanciesDl")
-    private CollectionLoader<Vacancy> vacanciesDl;
 
-    private Vacancy selectedVacancy;
-    private Citizen selectedCitizen;
-
-    @Autowired
-    CitizenService citizenService;
-
-    @Autowired
-    private Notifications notifications;
 
     @Subscribe("commitAndCloseBtn")
     public void onCommitAndCloseBtnClick(Button.ClickEvent event) {
@@ -119,30 +100,12 @@ public class RegistrationCardEdit extends StandardEditor<RegistrationCard> {
                 if (selectedCitizen.getVacancy() != null) {
                     dateOfEmploymentField.setValue(LocalDate.now());
                 }
+                this.closeWithCommit();
             }
             else {
-                
-                //throw new ExceedingFundsLimitException();
-                notifications.create()
-                        .withCaption("ОШИБКА")
-                        .withDescription("Карточка с таким пользователем уже существует")
-                        .show();
+                notifications.create().withCaption(messageBundle.getMessage("registrationCardEdit.ExceptionMessage"))
+                         .show();
+
             }
     }
-
-    /*@Subscribe("customerEntityPicker.points")
-    public void onCustomerEntityPickerPoints(Action.ActionPerformedEvent event) {
-        Customer customer = customerEntityPicker.getValue();
-        if (customer != null) {
-            notifications.create()
-                    .withCaption(customer.getFirstName() +
-                            " has " + customer.getRewardPoints() +
-                            " reward points")
-                    .show();
-        } else {
-            notifications.create()
-                    .withCaption("Choose a customer")
-                    .show();
-        }
-    }*/
 }

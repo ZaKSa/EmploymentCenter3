@@ -81,7 +81,7 @@
         </form>
 
         <hbox id="editActions" spacing="true">
-            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="commitAndCloseBtn" caption="msg://commitAndCloseBtn.caption"/>
             <button id="closeBtn" action="windowClose"/>
             <button id="editBtn" action="windowEdit" caption="msg://editBtn.caption"/>
 

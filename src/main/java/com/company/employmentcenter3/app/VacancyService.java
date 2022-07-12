@@ -16,9 +16,7 @@ public class VacancyService {
     private DataManager dataManager;
 
     public List<Vacancy> findVacancies(Citizen citizen) {
-        //Citizen citizen = dataManager.load(Citizen.class)
-        //        .id(userId).one();
-        if (citizen==null){
+        if (citizen == null){
             return dataManager.load(Vacancy.class).all().list();
         }
         List<Vacancy> allVacancy = dataManager.load(Vacancy.class).all().list()

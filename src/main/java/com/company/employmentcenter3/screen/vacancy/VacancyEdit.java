@@ -14,12 +14,7 @@ public class VacancyEdit extends StandardEditor<Vacancy> {
     @Autowired
     private DateField dateOfVacancyRegistrationField;
 
-    /*@Subscribe
-    public void onInitEntity(InitEntityEvent<Vacancy> event) {
-        dateOfVacancyRegistrationField.setValue(LocalDate.now());
-    }*/
-
-    @Subscribe
+       @Subscribe
     public void onBeforeShow(BeforeShowEvent event) {
         dateOfVacancyRegistrationField.setValue(LocalDate.now());
     }

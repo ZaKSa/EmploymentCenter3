@@ -25,7 +25,6 @@ public class CitizenEdit extends StandardEditor<Citizen> {
     private Vacancy selectedVacancy;
     private Citizen selectedCitizen;
 
-
     @Autowired
     private CheckBox signOfDeviceForWorkField;
 
@@ -35,11 +34,7 @@ public class CitizenEdit extends StandardEditor<Citizen> {
     @Subscribe("vacancyField")
     public void onSelectedVacancyFieldValueChange(HasValue.ValueChangeEvent<Vacancy> event) {
         signOfDeviceForWorkField.setValue(Boolean.TRUE);
-
-        //selectedVacancy = event.getValue();
-        //selectedCitizen = getEditedEntity();
-        //citizenService.haveBenefitPayment(selectedVacancy.getId(), selectedCitizen.getId());
-    vacanciesDl.load();
+        vacanciesDl.load();
     }
 
     @Autowired
@@ -50,11 +45,4 @@ public class CitizenEdit extends StandardEditor<Citizen> {
     private TextField patronymicField;
     @Autowired
     private TextField professionField;
-
-    //@Subscribe
-    //public void onBeforeShow(BeforeShowEvent event) {
-    //    getScreenData().loadAll();
-    //}
-
-
 }

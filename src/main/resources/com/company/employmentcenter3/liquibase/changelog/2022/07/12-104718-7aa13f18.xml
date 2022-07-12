@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="EmploymentCenter3">
+        <addColumn tableName="CITIZEN">
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="2" author="EmploymentCenter3">
+        <addColumn tableName="EMPLOYMENT_CENTER">
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="3" author="EmploymentCenter3">
+        <addColumn tableName="VACANCY">
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="DELETED_BY" type="VARCHAR(255)"/>
+            <column name="DELETED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="4" author="EmploymentCenter3">
+        <addColumn tableName="EMPLOYMENT_CENTER">
+            <column name="NAME" type="VARCHAR(255)"/>
+        </addColumn>
+
+        <addNotNullConstraint columnName="NAME" defaultNullValue="''" tableName="EMPLOYMENT_CENTER"/>
+    </changeSet>
+    <changeSet id="5" author="EmploymentCenter3">
+        <addColumn tableName="CITIZEN">
+            <column name="VERSION" type="INT"/>
+        </addColumn>
+
+        <addNotNullConstraint columnName="VERSION" defaultNullValue="0" tableName="CITIZEN"/>
+    </changeSet>
+    <changeSet id="6" author="EmploymentCenter3">
+        <addColumn tableName="EMPLOYMENT_CENTER">
+            <column name="VERSION" type="INT"/>
+        </addColumn>
+
+        <addNotNullConstraint columnName="VERSION" defaultNullValue="0" tableName="EMPLOYMENT_CENTER"/>
+    </changeSet>
+    <changeSet id="7" author="EmploymentCenter3">
+        <addColumn tableName="VACANCY">
+            <column name="VERSION" type="INT"/>
+        </addColumn>
+
+        <addNotNullConstraint columnName="VERSION" defaultNullValue="0" tableName="VACANCY"/>
+    </changeSet>
+</databaseChangeLog>
