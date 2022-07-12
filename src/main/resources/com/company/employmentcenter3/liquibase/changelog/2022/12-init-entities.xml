@@ -56,6 +56,7 @@
             <column name="DATE_OF_VACANCY_REGISTRATION" value="2022-07-07"/>
             <column name="IS_SELECTED" value="false"/>
 
+            <column name="VERSION" value="1"/>
 
             <column name="CREATED_BY" value="admin"/>
             <column name="CREATED_DATE" value="2022-07-07 15:48:55.057"/>
@@ -75,6 +76,7 @@
             <column name="DATE_OF_VACANCY_REGISTRATION" value="2022-07-07"/>
             <column name="IS_SELECTED" value="false"/>
 
+            <column name="VERSION" value="1"/>
 
             <column name="CREATED_BY" value="admin"/>
             <column name="CREATED_DATE" value="2022-07-07 15:48:55.057"/>
@@ -92,6 +94,8 @@
             <column name="ID" value="1494fe14-04d6-9dba-a9fd-3a35e9f11f2a"/>
             <column name="NAME" value="EMPLOYMENT CENTER 1"/>
 
+            <column name="VERSION" value="1"/>
+
             <column name="CREATED_BY" value="admin"/>
             <column name="CREATED_DATE" value="2022-07-07 15:48:55.057"/>
             <column name="LAST_MODIFIED_BY" value="null"/>
@@ -103,6 +107,8 @@
         <insert tableName="EMPLOYMENT_CENTER" dbms="postgresql, mssql, hsqldb">
             <column name="ID" value="c29de5d3-c058-ce61-b63c-cd92c742bbcb"/>
             <column name="NAME" value="EMPLOYMENT CENTER 2"/>
+
+            <column name="VERSION" value="1"/>
 
             <column name="CREATED_BY" value="admin"/>
             <column name="CREATED_DATE" value="2022-07-07 15:48:55.057"/>
@@ -142,6 +148,8 @@
             <column name="DATE_OF_EMPLOYMENT" value="2022-07-09"/>
             <column name="CITIZEN_ID" value="6eb69cf5-8804-e338-cf2f-d1a160f3406e"/>
             <column name="INDICATION_OF_BENEFIT_PAYMENT" value="false"/>
+
+            <column name="VERSION" value="1"/>
 
             <column name="CREATED_BY" value="admin"/>
             <column name="CREATED_DATE" value="2022-07-07 15:48:55.057"/>
