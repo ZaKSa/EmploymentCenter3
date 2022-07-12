@@ -8,43 +8,6 @@
 
     <changeSet id="1" author="EmploymentCenter3" context="!cuba">
 
-        <insert tableName="CITIZEN" dbms="postgresql, mssql, hsqldb">
-            <column name="ID" value="6eb69cf5-8804-e338-cf2f-d1a160f3406e"/>
-            <column name="NAME" value=" Ksenia"/>
-            <column name="SURNAME" value="Zatsepina"/>
-            <column name="PATRONYMIC" value="Aleksandrovna"/>
-            <column name="PROFESSION" value="Programmer"/>
-            <column name="VACANCY_ID" value="8325d467-25d1-4be4-54dc-519710728b5b"/>
-            <column name="SIGN_OF_DEVICE_FOR_WORK" value="false"/>
-
-            <column name="CREATED_BY" value="admin"/>
-            <column name="CREATED_DATE" value="2022-07-04 16:00:43.196"/>
-            <column name="LAST_MODIFIED_BY" value="null"/>
-            <column name="LAST_MODIFIED_DATE" value="2022-07-07 12:42:17.413"/>
-            <column name="DELETED_BY" value="null"/>
-            <column name="DELETED_DATE" value="null"/>
-        </insert>
-
-        <insert tableName="CITIZEN" dbms="postgresql, mssql, hsqldb">
-            <column name="ID" value="6eb69cf5-8804-e338-cf2f-d1a160f3406w"/>
-            <column name="NAME" value=" Asenia"/>
-            <column name="SURNAME" value="Katsepina"/>
-            <column name="PATRONYMIC" value="Zleksandrovna"/>
-            <column name="PROFESSION" value="Doctor"/>
-            <column name="VACANCY_ID" value="8325d467-25d1-4be4-54dc-519710728b5b"/>
-            <column name="SIGN_OF_DEVICE_FOR_WORK" value="false"/>
-
-            <column name="CREATED_BY" value="admin"/>
-            <column name="CREATED_DATE" value="2022-07-04 16:00:43.196"/>
-            <column name="LAST_MODIFIED_BY" value="null"/>
-            <column name="LAST_MODIFIED_DATE" value="2022-07-07 12:42:17.413"/>
-            <column name="DELETED_BY" value="null"/>
-            <column name="DELETED_DATE" value="null"/>
-        </insert>
-
-    </changeSet>
-
-    <changeSet id="2" author="EmploymentCenter3" context="!cuba">
 
         <insert tableName="VACANCY" dbms="postgresql, mssql, hsqldb">
             <column name="ID" value="8325d467-25d1-4be4-54dc-519710728b5b"/>
@@ -67,7 +30,7 @@
         </insert>
 
         <insert tableName="VACANCY" dbms="postgresql, mssql, hsqldb">
-            <column name="ID" value="8325d467-25d1-4be4-54dc-519710728b5b"/>
+            <column name="ID" value="8325d467-25d1-4be4-54dc-519710728b5a"/>
             <column name="POST" value="Doctor"/>
             <column name="SALARY" value="10000"/>
             <column name="BET" value="1"/>
@@ -85,6 +48,50 @@
             <column name="DELETED_BY" value="null"/>
             <column name="DELETED_DATE" value="null"/>
         </insert>
+
+
+    </changeSet>
+
+    <changeSet id="2" author="EmploymentCenter3" context="!cuba">
+
+        <insert tableName="CITIZEN" dbms="postgresql, mssql, hsqldb">
+            <column name="ID" value="0e15e7ac-b5d0-642f-5c4f-c9988356ee72"/>
+            <column name="NAME" value=" Ksenia"/>
+            <column name="SURNAME" value="Zatsepina"/>
+            <column name="PATRONYMIC" value="Aleksandrovna"/>
+            <column name="PROFESSION" value="Programmer"/>
+            <column name="VACANCY_ID" value="8325d467-25d1-4be4-54dc-519710728b5b"/>
+            <column name="SIGN_OF_DEVICE_FOR_WORK" value="true"/>
+
+
+            <column name="VERSION" value="1"/>
+            <column name="CREATED_BY" value="admin"/>
+            <column name="CREATED_DATE" value="2022-07-04 16:00:43.196"/>
+            <column name="LAST_MODIFIED_BY" value="null"/>
+            <column name="LAST_MODIFIED_DATE" value="2022-07-07 12:42:17.413"/>
+            <column name="DELETED_BY" value="null"/>
+            <column name="DELETED_DATE" value="null"/>
+        </insert>
+
+        <insert tableName="CITIZEN" dbms="postgresql, mssql, hsqldb">
+            <column name="ID" value="0f318e44-33fc-d420-4e70-6aa6edab1623"/>
+            <column name="NAME" value=" Asenia"/>
+            <column name="SURNAME" value="Katsepina"/>
+            <column name="PATRONYMIC" value="Zleksandrovna"/>
+            <column name="PROFESSION" value="Doctor"/>
+            <column name="VACANCY_ID" value="8325d467-25d1-4be4-54dc-519710728b5a"/>
+            <column name="SIGN_OF_DEVICE_FOR_WORK" value="true"/>
+
+            <column name="VERSION" value="1"/>
+
+            <column name="CREATED_BY" value="admin"/>
+            <column name="CREATED_DATE" value="2022-07-04 16:00:43.196"/>
+            <column name="LAST_MODIFIED_BY" value="null"/>
+            <column name="LAST_MODIFIED_DATE" value="2022-07-07 12:42:17.413"/>
+            <column name="DELETED_BY" value="null"/>
+            <column name="DELETED_DATE" value="null"/>
+        </insert>
+
 
     </changeSet>
 
@@ -123,7 +130,7 @@
     <changeSet id="4" author="EmploymentCenter3" context="!cuba">
 
     <insert tableName="EMPLOYMENT_CENTER_CITIZEN_LINK" dbms="postgresql, mssql, hsqldb">
-        <column name="citizen_id" value="6eb69cf5-8804-e338-cf2f-d1a160f3406e"/>
+        <column name="citizen_id" value="0e15e7ac-b5d0-642f-5c4f-c9988356ee72"/>
         <column name="employment_center_id" value="1494fe14-04d6-9dba-a9fd-3a35e9f11f2a"/>
     </insert>
 
@@ -146,7 +153,7 @@
             <column name="DATE_OF_REGISTRATION" value="2022-07-07"/>
             <column name="AMOUNT_OF_BENEFIT_PAID" value="12792"/>
             <column name="DATE_OF_EMPLOYMENT" value="2022-07-09"/>
-            <column name="CITIZEN_ID" value="6eb69cf5-8804-e338-cf2f-d1a160f3406e"/>
+            <column name="CITIZEN_ID" value="0e15e7ac-b5d0-642f-5c4f-c9988356ee72"/>
             <column name="INDICATION_OF_BENEFIT_PAYMENT" value="false"/>
 
             <column name="VERSION" value="1"/>
